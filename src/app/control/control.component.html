@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col">
+      <button class="btn btn-primary mr-2" (click)="iniciarSimulacion()">Iniciar Simulación</button>
+      <button class="btn btn-danger" (click)="detenerSimulacion()">Detener Simulación</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <app-gobierno [gobierno]="gobierno"></app-gobierno>
+    </div>
+    <div class="col-md-6">
+      <app-pueblo [pueblo]="pueblo"></app-pueblo>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <p><strong>Número de protestas:</strong> {{ numProtestas }}</p>
+      <p><strong>Cambios de política:</strong> {{ cambiosPolitica }}</p>
+      <p><strong>Cambios de gobierno:</strong> {{ cambiosGobierno }}</p>
+    </div>
+  </div>
+</div>
