@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { ContiendaCivil } from '../interfaces/ContiendaCivil.model';
+import { Gobierno } from '../interfaces/Gobierno.model';
 import { Partido } from '../interfaces/Partido.model';
-import { Pueblo } from "../interfaces/Pueblo.model";
-import { ContiendaCivil } from "../interfaces/ContiendaCivil.model";
-import { Gobierno } from "../interfaces/Gobierno.model";
-import { Politica } from "../interfaces/Politica.model";
+import { Politica } from '../interfaces/Politica.model';
+import { Pueblo } from '../interfaces/Pueblo.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,15 @@ import { Politica } from "../interfaces/Politica.model";
 export class ControlService {
   constructor() {}
 
-  actualizarEstado(gobierno: Gobierno, pueblo: Pueblo) {
+  inicializarEstado(): { gobierno: Gobierno, pueblo: Pueblo } {
+    const partido = Math.random() > 0.5 ? Partido.CONSERVADOR : Partido.LIBERAL;
+    const politica = partido === Partido.CONSERVADOR ? Politica.COERCITIVA : Politica.PERMISIVA;
+    const gobierno = new Gobierno(partido, politica);
+    const pueblo = new Pueblo(ContiendaCivil.BAJA);
+    return { gobierno, pueblo };
+  }
+
+  actualizarEstado(gobierno: Gobierno, pueblo: Pueblo): void {
     if (gobierno.politica === Politica.COERCITIVA) {
       pueblo.contiendaCivil = ContiendaCivil.ALTA;
     } else {
